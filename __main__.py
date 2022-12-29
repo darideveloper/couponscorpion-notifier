@@ -3,7 +3,7 @@ import csv
 import bs4
 import requests
 from logs import logger
-from email_manager.sender import Email_manager
+from email_manager.sender import EmailManager
 from dotenv import load_dotenv
 
 # Load environment variables
@@ -63,15 +63,16 @@ def main ():
     if new_articles:
         
         # Save new articles in history
-        with open (history_path, "w", encoding="utf-8", newline='') as file:
+        with open (history_path, "a", encoding="utf-8", newline='') as file:
             csv_writer = csv.writer(file)
             csv_writer.writerows(new_articles)
         
-        # TODO: Submit email with new articles 
-        email.send_email (receivers=[TO_EMAIL], subject="New offers found", body="New articles found")
-        
-        
-        
+        # Submit email with new articles data
+        logger.info (f"Sending email to: {TO_EMAIL}")
+        body = ""
+        for article in new_articles:
+            body += f"{article[3].title()} \nPrice: {article[2]} \nDate: {article[4]} \nLink: {article[1]}\n\n"
+        email.send_email (receivers=[TO_EMAIL], subject=f"{len(new_articles)} New offers found", body=body)
         
 if __name__ == "__main__":
     main()

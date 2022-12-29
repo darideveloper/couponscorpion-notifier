@@ -25,7 +25,7 @@ class EmailManager ():
         self.smtp_server = servers_ports_dic[email_domain]["smtp_server"]
         self.smtp_port = servers_ports_dic[email_domain]["smtp_port"]
 
-    def __connect_smtp(self):
+    def __connect_smtp__ (self):
         """Connect to smtp server for the email
         """
 
@@ -51,7 +51,7 @@ class EmailManager ():
         """Send email to specific receivers
         """
 
-        self.__connect_smtp()
+        self.__connect_smtp__()
 
         # Create text menssage
         menssage = f"Subject: {subject}\n\n{body}"
