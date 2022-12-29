@@ -21,18 +21,18 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/darideveloper/europeanstartups_scraper">
-    <img src="imgs/logo.png" alt="Logo" width="200" height="80">
+  <a href="https://github.com/darideveloper/couponscorpion_notifier">
+    <img src="imgs/logo.png" alt="Logo" width="250" height="80">
   </a>
 
-<h3 align="center">Europeanstartups Scraper</h3>
+<h3 align="center">Couponscorpion Notifierr</h3>
 
   <p align="center">
-    Python scraper for extract data from the page <a href="https://app.europeanstartups.co/companies.startups/f/data_type/anyof_Verified/regions/allof_European%20Union">https://app.europeanstartups.co/companies.startups/f/data_type/anyof_Verified/regions/allof_European%20Union</a>, using python, and a google chrome data with a premium account already logged.
+    Check the new courses from the page <a href="https://www.couponscorpion.com/courses/">couponscorpion.com/courses</a> and send a notification by email when new courses are available.
     <br />
-    <a href="https://github.com/darideveloper/europeanstartups_scraper/issues">Report Bug</a>
+    <a href="https://github.com/darideveloper/couponscorpion_notifier/issues">Report Bug</a>
     ·
-    <a href="https://github.com/darideveloper/europeanstartups_scraper/issues">Request Feature</a>
+    <a href="https://github.com/darideveloper/couponscorpion_notifier/issues">Request Feature</a>
   </p>
 </div>
 
@@ -70,33 +70,8 @@
 
 [![Web page Screenshot][product-screenshot]](webpage)
 
-The project extract all results from the page [https://app.europeanstartups.co/companies.startups/f/data_type/anyof_Verified/regions/allof_European%20Union](https://app.europeanstartups.co/companies.startups/f/data_type/anyof_Verified/regions/allof_European%20Union), and save the output data in a csv file.
-
-The project is a python script, that use a google chrome data with a premium account already logged, to extract the data from the page.
-
-The data extract is:
-
-* NAME
-* DEALROOM SIGNAL
-* MARKET
-* TYPE
-* LAUNCH DATE
-* VALUATION
-* FUNDING
-* LOCATION
-* LAST ROUND
-* REVENUE
-* STATUS
-* GROWTH STAGE
-* EMPLOYEES
-* OWNERSHIP
-* MARKET CAP
-* DEBT
-* URL WEBSITE
-* LINKEDIN PROFILE
-* TWITTER PROFILE
-* FIRM VALUATION
-* TAGS
+The project extract check the new courses from the page [couponscorpion.com/courses](https://www.couponscorpion.com/courses/) and send a notification by email when new courses are available.
+You can setup the script to check the new courses in a specific time interval (in minutes); set the email address to send the notification; and set the email address to receive the notification.
 
 ### Built With
 
@@ -104,9 +79,6 @@ The data extract is:
 <div>
 <a href="https://www.python.org/">
   <img src="https://cdn.svgporn.com/logos/python.svg" width="50" alt="python" title="python">
-</a>
-<a href="https://www.selenium.dev/">
-  <img src="https://cdn.svgporn.com/logos/selenium.svg" width="50" alt="selenium" title="selenium">
 </a>
 
 <!-- GETTING STARTED -->
@@ -116,7 +88,6 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-* [Google chrome](https://www.google.com/intl/es-419/chrome/)
 * [Python >=3.10](https://www.python.org/)
 * [Git](https://git-scm.com/)
 
@@ -124,39 +95,39 @@ To get a local copy up and running follow these simple example steps.
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/darideveloper/europeanstartups_scraper.git
+   git clone https://github.com/darideveloper/couponscorpion_notifier.git
    ```
 2. Install python packages (opening a terminal in the project folder)
    ```sh
    python -m pip install -r requirements.txt 
    ```
-3. Update your chrome path in the `.env` file (note: the chrome path is the folder where chrome data its installed)
-   ```js
-   CHROME_PATH = C:\Users\<<your-user-name>>\AppData\Local\Google\Chrome\User Data
+3. Create a `.env` file in the project folder, and setup your options: 
+   ```sh
+    WAIT_TIME = 15 # wait time in minutes between checks
+    FROM_EMAIL = darideveloper@gmail.com # email address to send the notification
+    FROM_EMAIL_PASSWORD = 12345678 # password of the email address to send the notification
+    TO_EMAIL = darideveloper@gmail.com # email address to receive the notification
    ```
 
+Note: the most of emails dont allow you to send emails from a script with your real password, so you need to create an application password and use it. Here a tutorial for [Gmail](https://support.google.com/accounts/answer/185833?hl=en) and [Outlook](https://support.microsoft.com/en-us/office/create-an-app-password-for-outlook-365-or-outlook-com-9c56a35d-3f3d-4eca-a288-47fa2c772e2a).
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-1. Go to https://app.europeanstartups.co/companies.startups/f/data_type/anyof_Verified/regions/allof_European%20Union and create an account (if you have problems with your email, try with a [proton email](https://proton.me/es/mail))
-2. Activate the premium trial or buy a premium account
-3. be sure to keep the account logged in the browser.
-4. Open a terminal in the project folder
-5. Run the project folder with python: 
+1. Run the project folder with python: 
     ```sh
     python .
     ```
-6. Wait until the script finish, and check the `output.csv` file in the project folder (note: while the script its running, you can't use google chrome).
+2. Wait for the first check, and check your email address to receive the notification.
 
 <!-- ROADMAP -->
 ## Roadmap
 
-- [x] Use chrome data fro avoid login in the page
-- [x] Extract all data from the page
-- [x] Save output data in csv file 
+- [x] Get the current courses in the page
+- [x] History file to save the courses already checked
+- [x] Submit email notification
 
-See the [open issues](https://github.com/darideveloper/europeanstartups_scraper/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/darideveloper/couponscorpion_notifier/issues) for a full list of proposed features (and known issues).
 
 
 <!-- CONTRIBUTING -->
@@ -187,21 +158,21 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 Darideveloper - [@developerdari](https://twitter.com/developerdari) - darideveloper@gmail.com.com
 
-Project Link: [https://github.com/darideveloper/europeanstartups_scraper](https://github.com/darideveloper/europeanstartups_scraper)
+Project Link: [https://github.com/darideveloper/couponscorpion_notifier](https://github.com/darideveloper/couponscorpion_notifier)
 
 
 <!-- MARKDOWN LINKS & imgs -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/darideveloper/europeanstartups_scraper.svg?style=for-the-badge
-[contributors-url]: https://github.com/darideveloper/europeanstartups_scraper/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/darideveloper/europeanstartups_scraper.svg?style=for-the-badge
-[forks-url]: https://github.com/darideveloper/europeanstartups_scraper/network/members
-[stars-shield]: https://img.shields.io/github/stars/darideveloper/europeanstartups_scraper.svg?style=for-the-badge
-[stars-url]: https://github.com/darideveloper/europeanstartups_scraper/stargazers
-[issues-shield]: https://img.shields.io/github/issues/darideveloper/europeanstartups_scraper.svg?style=for-the-badge
-[issues-url]: https://github.com/darideveloper/europeanstartups_scraper/issues
-[license-shield]: https://img.shields.io/github/license/darideveloper/europeanstartups_scraper.svg?style=for-the-badge
-[license-url]: https://github.com/darideveloper/europeanstartups_scraper/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/darideveloper/couponscorpion_notifier.svg?style=for-the-badge
+[contributors-url]: https://github.com/darideveloper/couponscorpion_notifier/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/darideveloper/couponscorpion_notifier.svg?style=for-the-badge
+[forks-url]: https://github.com/darideveloper/couponscorpion_notifier/network/members
+[stars-shield]: https://img.shields.io/github/stars/darideveloper/couponscorpion_notifier.svg?style=for-the-badge
+[stars-url]: https://github.com/darideveloper/couponscorpion_notifier/stargazers
+[issues-shield]: https://img.shields.io/github/issues/darideveloper/couponscorpion_notifier.svg?style=for-the-badge
+[issues-url]: https://github.com/darideveloper/couponscorpion_notifier/issues
+[license-shield]: https://img.shields.io/github/license/darideveloper/couponscorpion_notifier.svg?style=for-the-badge
+[license-url]: https://github.com/darideveloper/couponscorpion_notifier/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/francisco-dari-hernandez-6456b6181/
 [product-screenshot]: ./imgs/screenshot.gif
@@ -210,4 +181,4 @@ Project Link: [https://github.com/darideveloper/europeanstartups_scraper](https:
 [gmail-shield]: https://img.shields.io/badge/-gmail-black.svg?style=for-the-badge&logo=gmail&colorB=555&logoColor=white
 [fiverr-shield]: https://img.shields.io/badge/-fiverr-black.svg?style=for-the-badge&logo=fiverr&colorB=555&logoColor=white
 
-<span>Last code update: <time datetime="2022-11-29" class="last-update">2022-11-29</time>
+<span>Last code update: <time datetime="2022-11-29" class="last-update">2022-12-28</time>
