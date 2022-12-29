@@ -3,11 +3,23 @@ import csv
 import bs4
 import requests
 from logs import logger
+from email_manager.sender import Email_manager
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv ()
+WAIT_TIME = int(os.getenv("WAIT_TIME"))
+FROM_EMAIL = os.getenv("FROM_EMAIL")
+FROM_EMAIL_PASSWORD = os.getenv("FROM_EMAIL_PASSWORD")
+TO_EMAIL = os.getenv("TO_EMAIL")
 
 def get_clean_text (article, selector): 
     return article.select(selector)[0].text.replace("\n", "").strip()
 
 def main (): 
+    
+    # Instance for submit emails
+    email = EmailManager (FROM_EMAIL, FROM_EMAIL_PASSWORD)
     
     # get page content
     page = "https://couponscorpion.com/"
@@ -31,17 +43,18 @@ def main ():
         
         # Get articles data
         article_image = article.select("a > img")[0]["data-src"]
+        article_link = article.select("a")[0]["href"]
         article_price = get_clean_text(article, "figure.mb15 > span.grid_onsale")
         article_name = get_clean_text(article, ".grid_row_info > h3")
         article_date = get_clean_text (article, ".date_for_grid > span.date_ago")
         
         # Merge data and validate if it is new
-        article_data = [article_image, article_price, article_name, article_date]
+        article_data = [article_image, article_link, article_price, article_name, article_date]
         if article_data not in history:
             new_articles.append(article_data)
             
         # Debug articles scraped
-        logger.debug (f"article scraped: {article_name} ({article_date})")
+        logger.debug (f"article scraped: {article_name} ({article_date}) - {article_link}")
             
     # Show status of the new articles found
     logger.info (f"new articles found: {len(new_articles)}")
@@ -54,8 +67,8 @@ def main ():
             csv_writer = csv.writer(file)
             csv_writer.writerows(new_articles)
         
-            
-        # TODO: Submit email with new articles data
+        # TODO: Submit email with new articles 
+        email.send_email (receivers=[TO_EMAIL], subject="New offers found", body="New articles found")
         
         
         
