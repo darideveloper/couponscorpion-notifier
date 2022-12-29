@@ -2,21 +2,33 @@ import os
 import csv
 import bs4
 import requests
+from time import sleep
 from logs import logger
 from email_manager.sender import EmailManager
 from dotenv import load_dotenv
 
 # Load environment variables
 load_dotenv ()
-WAIT_TIME = int(os.getenv("WAIT_TIME"))
+WAIT_TIME = float(os.getenv("WAIT_TIME"))
 FROM_EMAIL = os.getenv("FROM_EMAIL")
 FROM_EMAIL_PASSWORD = os.getenv("FROM_EMAIL_PASSWORD")
 TO_EMAIL = os.getenv("TO_EMAIL")
 
-def get_clean_text (article, selector): 
+def get_clean_text (article:bs4.element.Tag, selector:str): 
+    """ Get clean text from article selector
+
+    Args:
+        article (bs4.element.Tag): bs5 tag of the article found
+        selector (str): css selector
+
+    Returns:
+        str: text clean of the tag
+    """
+    
     return article.select(selector)[0].text.replace("\n", "").strip()
 
-def main (): 
+def checker (): 
+    """ Check for new articles and send email if there are new articles """
     
     # Instance for submit emails
     email = EmailManager (FROM_EMAIL, FROM_EMAIL_PASSWORD)
@@ -40,16 +52,15 @@ def main ():
     # Loop for each article found
     new_articles = []
     for article in articles:
-        
+                
         # Get articles data
-        article_image = article.select("a > img")[0]["data-src"]
         article_link = article.select("a")[0]["href"]
         article_price = get_clean_text(article, "figure.mb15 > span.grid_onsale")
         article_name = get_clean_text(article, ".grid_row_info > h3")
         article_date = get_clean_text (article, ".date_for_grid > span.date_ago")
         
         # Merge data and validate if it is new
-        article_data = [article_image, article_link, article_price, article_name, article_date]
+        article_data = [article_link, article_price, article_name, article_date]
         if article_data not in history:
             new_articles.append(article_data)
             
@@ -71,8 +82,12 @@ def main ():
         logger.info (f"Sending email to: {TO_EMAIL}")
         body = ""
         for article in new_articles:
-            body += f"{article[3].title()} \nPrice: {article[2]} \nDate: {article[4]} \nLink: {article[1]}\n\n"
+            body += f"{article[2].title()} \nPrice: {article[1]} \nDate: {article[3]} \nLink: {article[0]}\n\n"
         email.send_email (receivers=[TO_EMAIL], subject=f"{len(new_articles)} New offers found", body=body)
         
 if __name__ == "__main__":
-    main()
+    # Main loop
+    while True:
+        checker()
+        logger.info ("waiting for next check...")
+        sleep(WAIT_TIME*60)

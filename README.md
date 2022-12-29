@@ -68,7 +68,8 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Web page Screenshot][product-screenshot]](webpage)
+Sample email:
+![Web page Screenshot][product-screenshot]
 
 The project extract check the new courses from the page [couponscorpion.com/courses](https://www.couponscorpion.com/courses/) and send a notification by email when new courses are available.
 You can setup the script to check the new courses in a specific time interval (in minutes); set the email address to send the notification; and set the email address to receive the notification.
@@ -158,7 +159,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 Darideveloper - [@developerdari](https://twitter.com/developerdari) - darideveloper@gmail.com.com
 
-Project Link: [https://github.com/darideveloper/couponscorpion_notifier](https://github.com/darideveloper/couponscorpion_notifier)
+Project Link: [https://github.com/darideveloper/couponscorpion_notifier](https://github.com/darideveloper/**couponscorpion_notifier**)
 
 
 <!-- MARKDOWN LINKS & imgs -->
@@ -175,7 +176,7 @@ Project Link: [https://github.com/darideveloper/couponscorpion_notifier](https:/
 [license-url]: https://github.com/darideveloper/couponscorpion_notifier/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/francisco-dari-hernandez-6456b6181/
-[product-screenshot]: ./imgs/screenshot.gif
+[product-screenshot]: ./imgs/email.png
 [gmail-url]: mailto:darideveloper@gmail.com
 [fiverr-url]: https://www.fiverr.com/darideveloper
 [gmail-shield]: https://img.shields.io/badge/-gmail-black.svg?style=for-the-badge&logo=gmail&colorB=555&logoColor=white
