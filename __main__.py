@@ -4,6 +4,9 @@ import bs4
 import requests
 from logs import logger
 
+def get_clean_text (article, selector): 
+    return article.select(selector)[0].text.replace("\n", "").strip()
+
 def main (): 
     
     # get page content
@@ -28,9 +31,9 @@ def main ():
         
         # Get articles data
         article_image = article.select("a > img")[0]["data-src"]
-        article_price = article.select("figure.mb15 > span.grid_onsale")[0].text.replace("\n", "")
-        article_name = article.select(".grid_row_info > h3")[0].text.replace("\n", "")
-        article_date = article.select(".date_for_grid > span.date_ago")[0].text.replace("\n", "")
+        article_price = get_clean_text(article, "figure.mb15 > span.grid_onsale")
+        article_name = get_clean_text(article, ".grid_row_info > h3")
+        article_date = get_clean_text (article, ".date_for_grid > span.date_ago")
         
         # Merge data and validate if it is new
         article_data = [article_image, article_price, article_name, article_date]

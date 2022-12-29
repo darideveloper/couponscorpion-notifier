@@ -4,5 +4,5 @@ import logging
 logging.basicConfig(filename='.log', format='%(asctime)s - %(levelname)s - %(message)s')
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.DEBUG)
 logger.addHandler(logging.StreamHandler())
