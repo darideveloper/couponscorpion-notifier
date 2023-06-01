@@ -50,47 +50,47 @@ The project extract check the new courses from the page couponscorpion.com/cours
 
 # Install
 
-## Prerequisites\r
-\r
-* [Python >=3.10](https://www.python.org/)\r
-* [Git](https://git-scm.com/)\r
-\r
-## Installation\r
-\r
-1. Clone the repo\r
-   \\`\\`\\`sh\r
-   git clone https://github.com/darideveloper/couponscorpion_notifier.git\r
-   \\`\\`\\`\r
-2. Install python packages (opening a terminal in the project folder)\r
-   \\`\\`\\`sh\r
-   python -m pip install -r requirements.txt \r
-   \\`\\`\\`
+## Prerequisites
+
+* [Python >=3.10](https://www.python.org/)
+* [Git](https://git-scm.com/)
+
+## Installation
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/darideveloper/couponscorpion_notifier.git
+   ```
+2. Install python packages (opening a terminal in the project folder)
+   ```sh
+   python -m pip install -r requirements.txt 
+   ```
 
 # Settings
 
-All settings are in the \\`.env\\` file. Create it in the root folder with the following content: \r
-\r
-\\`\\`sh\r
-\tWAIT_TIME = 15 # wait time in minutes between checks\r
-\tFROM_EMAIL = darideveloper@gmail.com # email address to send the notification\r
-\tFROM_EMAIL_PASSWORD = 12345678 # password of the email address to send the notification\r
-\tTO_EMAIL = darideveloper@gmail.com # email address to receive the notification\r
- \\`\\`\\`\r
- \r
+All settings are in the `.env` file. Create it in the root folder with the following content: 
+
+``sh
+tWAIT_TIME = 15 # wait time in minutes between checks
+tFROM_EMAIL = darideveloper@gmail.com # email address to send the notification
+tFROM_EMAIL_PASSWORD = 12345678 # password of the email address to send the notification
+tTO_EMAIL = darideveloper@gmail.com # email address to receive the notification
+ ```
+ 
 Note: the most of emails dont allow you to send emails from a script with your real password, so you need to create an application password and use it. Here a tutorial for [Gmail](https://support.google.com/accounts/answer/185833?hl=en) and [Outlook](https://support.microsoft.com/en-us/office/create-an-app-password-for-outlook-365-or-outlook-com-9c56a35d-3f3d-4eca-a288-47fa2c772e2a).
 
 # Run
 
-1. Run the project folder with python: \r
-    \\`\\`\\`sh\r
-    python .\r
-    \\`\\`\\`\r
+1. Run the project folder with python: 
+    ```sh
+    python .
+    ```
 2. Wait for the first check, and check your email address to receive the notification.
 
 # Roadmap
 
-- [x] Get the current courses in the page\r
-- [x] History file to save the courses already checked\r
+- [x] Get the current courses in the page
+- [x] History file to save the courses already checked
 - [x] Submit email notification
 
 
