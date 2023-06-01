@@ -71,10 +71,10 @@ The project extract check the new courses from the page couponscorpion.com/cours
 All settings are in the `.env` file. Create it in the root folder with the following content: 
 
 ``sh
-tWAIT_TIME = 15 # wait time in minutes between checks
-tFROM_EMAIL = darideveloper@gmail.com # email address to send the notification
-tFROM_EMAIL_PASSWORD = 12345678 # password of the email address to send the notification
-tTO_EMAIL = darideveloper@gmail.com # email address to receive the notification
+	WAIT_TIME = 15 # wait time in minutes between checks
+	FROM_EMAIL = darideveloper@gmail.com # email address to send the notification
+	FROM_EMAIL_PASSWORD = 12345678 # password of the email address to send the notification
+	TO_EMAIL = darideveloper@gmail.com # email address to receive the notification
  ```
  
 Note: the most of emails dont allow you to send emails from a script with your real password, so you need to create an application password and use it. Here a tutorial for [Gmail](https://support.google.com/accounts/answer/185833?hl=en) and [Outlook](https://support.microsoft.com/en-us/office/create-an-app-password-for-outlook-365-or-outlook-com-9c56a35d-3f3d-4eca-a288-47fa2c772e2a).
